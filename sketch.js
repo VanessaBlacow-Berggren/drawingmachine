@@ -1,17 +1,32 @@
 let array = [];
+let input, button, greeting;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   // background(0);
-  drawGrid();
+  drawGrid(50);
   colorMode(HSB, 360, 100, 100);
+
+  input = createInput();
+  input.position(width/ 2.4, height /5);
+
+  button = createButton('submit');
+  button.position(input.x + input.width, height/ 5);
+  button.mousePressed(greet);
+
+  greeting = createElement('h2', 'Make a promise to yourself');
+  greeting.position(width / 2.5, height / 10);
+
+  textAlign(CENTER);
+  textSize(10)
+
 }
 
 function draw() {
 
   // console.log(frameCount % 360);
 
-  if(mouseIsPressed) {
+if(mouseIsPressed) {
     background(0, 0.03);
     stroke(frameCount % 360, 100, 100);
     fill(frameCount % 360, 100, 100, 0.7);
@@ -28,13 +43,14 @@ function draw() {
 function keyTyped() {
 
 console.log(`key ${key} is being typed`)
-  if (key === 's'){
-
-  }
-  else if (key === 'd'){
+  // if (key === 's'){
+  //
+  // }
+   if (key === 'r'){
     // background(0);
-    stroke(0);
-    fill(0);
+    drawGrid(20);
+    noStroke();
+    noFill();
     // console.log(array);
     for(let i = 0; i< array.length - 1; i++){
     beginShape();
@@ -47,16 +63,31 @@ console.log(`key ${key} is being typed`)
   }
 }
 
-function drawGrid() {
+function drawGrid(sTroke) {
   background(0);
-  stroke(360);
+  stroke(sTroke);
   fill(0);
 
   numCells = 20;
 
   for (let j = 0; j <= width; j += width/ numCells){
     for (let h = 0; h<= height; h += height/numCells){
-    rect(j, h, width/ numCells, height/ numCells );
+    rect(j, h, width/ numCells, height/ numCells);
   }
 }
+}
+
+
+function greet() {
+  const name = input.value();
+  greeting.html('Promise received! Now draw your rainbow!');
+  input.value('');
+
+  for (let i = 0; i < 200; i++) {
+    push();
+    fill(0);
+    translate(random(width), random(height));
+    // text(name, 0, 0);
+    pop();
+  }
 }
