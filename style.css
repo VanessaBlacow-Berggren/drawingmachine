@@ -8,6 +8,7 @@ body{
   margin: 20px auto 0 auto;
   width: 80%;
   text-align: center;
+  background-color: black;
 }
 
 canvas {
@@ -22,6 +23,24 @@ canvas {
 
 }
 
+h1 {
+  color: white;
+}
+
 h2 {
   color: white;
+}
+
+h3 {
+  color: white;
+}
+
+a {
+  color: #white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #white;
+  text-decoration: none;
 }

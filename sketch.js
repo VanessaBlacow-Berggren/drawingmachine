@@ -1,5 +1,6 @@
 let array = [];
-let input, button, greeting;
+let input, button, greeting, restart;
+let drawing = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -17,6 +18,9 @@ function setup() {
   greeting = createElement('h2', 'Make a promise to yourself');
   greeting.position(width / 2.5, height / 10);
 
+  restart = createElement('h3', 'Press `r` to restart your rainbow');
+  restart.position(width / 2.5, height / 4.3);
+
   textAlign(CENTER);
   textSize(10)
 
@@ -26,7 +30,11 @@ function draw() {
 
   // console.log(frameCount % 360);
 
-if(mouseIsPressed) {
+  // if (mouseX < 2.4 && mouseX > 1.69){
+
+  // }
+
+ if(mouseIsPressed && drawing) {
     background(0, 0.03);
     stroke(frameCount % 360, 100, 100);
     fill(frameCount % 360, 100, 100, 0.7);
@@ -38,6 +46,8 @@ if(mouseIsPressed) {
     endShape(CLOSE);
     array.push([mouseX, mouseY]);
     }
+
+    // greetText();
 }
 
 function keyTyped() {
@@ -47,7 +57,6 @@ console.log(`key ${key} is being typed`)
   //
   // }
    if (key === 'r'){
-    // background(0);
     drawGrid(20);
     noStroke();
     noFill();
@@ -83,11 +92,13 @@ function greet() {
   greeting.html('Promise received! Now draw your rainbow!');
   input.value('');
 
-  for (let i = 0; i < 200; i++) {
-    push();
-    fill(0);
-    translate(random(width), random(height));
-    // text(name, 0, 0);
-    pop();
-  }
+  drawing = true;
+
+  // for (let i = 0; i < 200; i++) {
+  //   push();
+  //   fill(0);
+  //   translate(random(width), random(height));
+  //   text(name, 0, 0);
+  //   pop();
+  // }
 }
